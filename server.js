@@ -11,7 +11,7 @@ const app = express();
 // Configurer les options de CORS
 var corsOptions = {
   credentials: true,
-  origin: "http://localhost:8081"
+  origin: "https://https://backshowmylife.vercel.app/"
 };
 
 app.use(cors(corsOptions));

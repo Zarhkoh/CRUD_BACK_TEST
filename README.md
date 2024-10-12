@@ -28,3 +28,7 @@ Pour lancer le serveur, exécutez la commande suivante :
 
 ```bash
 node server.js
+
+Compte admin :
+username: "Admin",
+password: adminPassword,
