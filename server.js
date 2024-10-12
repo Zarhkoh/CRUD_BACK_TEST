@@ -40,17 +40,40 @@ const upload = multer({ storage });
 // Base de données
 const db = require("./app/models");
 const Role = db.role;
+const User = db.user; // Importer le modèle d'utilisateur
 
 // Synchroniser la base de données
 db.sequelize.sync().then(() => {
   console.log('Database synchronized.');
-  initial();
+  initial(); // Appeler la fonction pour initialiser les rôles et l'admin
 });
 
-// Initialiser les rôles
+// Initialiser les rôles et l'utilisateur admin
 function initial() {
   Role.findOrCreate({ where: { id: 1, name: "user" } });
   Role.findOrCreate({ where: { id: 3, name: "admin" } });
+
+  // Créer un compte administrateur par défaut
+  const adminEmail = "admin@gmail.com";
+  const adminPassword = "admin"; // Pour production, assurez-vous de hacher ce mot de passe
+
+  User.findOrCreate({
+    where: { email: adminEmail },
+    defaults: {
+      username: "Admin",
+      password: adminPassword,
+      // Assurez-vous d'avoir le bon roleId
+      roleId: 3 // Rôle administrateur
+    }
+  }).then(([user, created]) => {
+    if (created) {
+      console.log('Admin user created successfully.');
+    } else {
+      console.log('Admin user already exists.');
+    }
+  }).catch(err => {
+    console.error('Error creating admin user:', err);
+  });
 }
 
 // Route simple pour vérifier que l'application fonctionne
