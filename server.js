@@ -11,7 +11,7 @@ const app = express();
 // Configurer les options de CORS
 var corsOptions = {
   credentials: true,
-  origin: "https://https://showmylife.vercel.app"
+  origin: "https://showmylife.vercel.app"
 };
 
 app.use(cors(corsOptions));
