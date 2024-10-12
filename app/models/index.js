@@ -6,9 +6,15 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
   dialectOptions: {
     ssl: {
       require: true,
-      rejectUnauthorized: false // Si vous avez besoin de SSL
+      rejectUnauthorized: false
     }
-  }
+  },
+  pool: {
+    max: 5,           // Nombre maximum de connexions simultanées
+    min: 0,           // Nombre minimum de connexions à maintenir ouvertes
+    acquire: 30000,   // Temps maximum en millisecondes que Sequelize va essayer de se connecter avant d'échouer
+    idle: 10000       // Temps maximum en millisecondes pendant lequel une connexion inutilisée peut rester ouverte avant d'être fermée
+}
 });
 
 
