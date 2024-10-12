@@ -1,5 +1,5 @@
-const { authJwt, verifySignUp } = require("../middleware");
 const controller = require("../controllers/auth.controller");
+const {verifySignUp,authJwt} = require("../middleware");
 
 module.exports = function(app) {
   // Middleware pour gérer les CORS

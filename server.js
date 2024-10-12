@@ -1,6 +1,4 @@
 require('dotenv').config();
-console.log(`DB: ${process.env.DATABASE_URL}`)
-console.log(`CLIENTURL: ${process.env.CLIENT_URL}`)
 const express = require("express");
 const cors = require("cors");
 const multer = require("multer");
@@ -56,12 +54,12 @@ function initial() {
 
   // Créer un compte administrateur par défaut
   const adminEmail = "admin@gmail.com";
-  const adminPassword = "admin"; // Pour production, assurez-vous de hacher ce mot de passe
+  const adminPassword = "azerty1234"; // Pour production, assurez-vous de hacher ce mot de passe
 
   User.findOrCreate({
     where: { email: adminEmail },
     defaults: {
-      username: "Admin",
+      username: "admin",
       password: adminPassword,
       // Assurez-vous d'avoir le bon roleId
       roleId: 3 // Rôle administrateur
